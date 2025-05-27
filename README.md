@@ -1,2 +1,2 @@
-# tombola-booking
+# tombola-bhi
 Tombola Ziua Copilului

