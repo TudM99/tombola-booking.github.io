@@ -788,6 +788,35 @@
             <p class="form-section-helper-text"><em>Completează formularul pentru a intra în tombolă:</em></p>
 
             <form id="raffle-form">
+			
+			<!-- Enhanced Google Button Section -->
+                <div class="google-section">
+                    <div class="google-section-title">
+                        ⚡ Participare rapidă
+                    </div>
+                    <div class="google-section-subtitle">
+                        Trimite datele direct prin Google pentru o experiență mai rapidă și sigură
+                    </div>
+                    <button type="button" class="Google-btn" onclick="openGoogleModal()" aria-label="Trimite participarea rapid prin Google">
+                        <img src="sempex.png" alt="Google Logo">
+                        <span>Trimite prin Google</span>
+                    </button>
+                    <div class="google-features">
+                        <div class="google-feature">
+                            <span>🔒</span>
+                            <span>Sigur</span>
+                        </div>
+                        <div class="google-feature">
+                            <span>⚡</span>
+                            <span>Rapid</span>
+                        </div>
+                        <div class="google-feature">
+                            <span>✅</span>
+                            <span>Simplu</span>
+                        </div>
+                    </div>
+                </div>
+			
                 <div class="form-group">
                     <label for="fullName">Nume complet *</label>
                     <input type="text" id="fullName" name="fullName" required autocomplete="name">
@@ -823,33 +852,7 @@
 
                 <input type="hidden" id="giftCardType" name="giftCardType">
 
-                <!-- Enhanced Google Button Section -->
-                <div class="google-section">
-                    <div class="google-section-title">
-                        ⚡ Participare rapidă
-                    </div>
-                    <div class="google-section-subtitle">
-                        Trimite datele direct prin Google pentru o experiență mai rapidă și sigură
-                    </div>
-                    <button type="button" class="Google-btn" onclick="openGoogleModal()" aria-label="Trimite participarea rapid prin Google">
-                        <img src="sempex.png" alt="Google Logo">
-                        <span>Trimite prin Google</span>
-                    </button>
-                    <div class="google-features">
-                        <div class="google-feature">
-                            <span>🔒</span>
-                            <span>Sigur</span>
-                        </div>
-                        <div class="google-feature">
-                            <span>⚡</span>
-                            <span>Rapid</span>
-                        </div>
-                        <div class="google-feature">
-                            <span>✅</span>
-                            <span>Simplu</span>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <div class="button-container">
                     <button type="button" class="back-btn" onclick="goBack()">← Înapoi</button>
