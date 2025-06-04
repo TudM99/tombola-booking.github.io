@@ -896,7 +896,7 @@
         function selectGiftCard(type) {
             selectedGiftCard = type;
             document.getElementById('giftCardType').value = type; // Ensure this is set for the main form
-            document.getElementById('selected-card-title').textContent = `Completează datele tale pentru cardul cadou ${type}`;
+            document.getElementById('selected-card-title').textContent = `Completează datele tale pentru platforma ${type}`;
 
             document.querySelectorAll('.gift-card').forEach(card => card.classList.remove('selected'));
             // Construct class name carefully, e.g., "v-bucks" becomes "vbucks"
